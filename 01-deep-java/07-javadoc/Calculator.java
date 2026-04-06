@@ -1,28 +1,28 @@
 /**
- * Esta clase representa una calculadora simple.
- * Proporciona métodos para realizar operaciones básicas como suma y resta.
+ * This class represents a simple calculator.
+ * It provides methods for basic operations such as addition and subtraction.
  */
 public class Calculator {
 
     /**
-     * Suma dos números.
+     * Adds two numbers.
      *
-     * @param a el primer número
-     * @param b el segundo número
-     * @return la suma de los números
+     * @param a the first number
+     * @param b the second number
+     * @return the sum of the numbers
      */
-    public int sumar(int a, int b) {
+    public int add(int a, int b) {
         return a + b;
     }
 
     /**
-     * Resta dos números.
+     * Subtracts two numbers.
      *
-     * @param a el número del que se resta
-     * @param b el número que se resta
-     * @return la diferencia de los números
+     * @param a the number to subtract from
+     * @param b the number to subtract
+     * @return the difference of the numbers
      */
-    public int restar(int a, int b) {
+    public int subtract(int a, int b) {
         return a - b;
     }
 }

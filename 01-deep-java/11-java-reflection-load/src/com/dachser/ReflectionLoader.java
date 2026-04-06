@@ -4,12 +4,12 @@ import java.lang.reflect.*;
 public class ReflectionLoader {
     
     public static void main(String[] args) throws Exception {
-        Class<?> grettingSoutClass = Class.forName("com.dachser.greeting.GreetingSout");
+        Class<?> greetingSoutClass = Class.forName("com.dachser.greeting.GreetingSout");
 
-        Object grettingSoutInstance = grettingSoutClass.getDeclaredConstructor().newInstance();
+        Object greetingSoutInstance = greetingSoutClass.getDeclaredConstructor().newInstance();
         
-        Method executeMethod = grettingSoutClass.getMethod("personalizedGreeting", String.class);
-        executeMethod.invoke(grettingSoutInstance, "Ronald :D");
+        Method executeMethod = greetingSoutClass.getMethod("personalizedGreeting", String.class);
+        executeMethod.invoke(greetingSoutInstance, "Ronald :D");
     }
 
 }

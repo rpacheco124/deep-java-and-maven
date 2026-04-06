@@ -7,10 +7,10 @@ public class ReflectionInvoker {
         Class<?> clazz = Class.forName("java.lang.String");
         Object instance = "Hello, world";
 
-        // Get and execute toUpperCase method dinamically
+        // Get and execute toUpperCase method dynamically
         Method method = clazz.getMethod("toUpperCase");
         Object result = method.invoke(instance);
-        System.out.println("Resultado: " + result);
+        System.out.println("Result: " + result);
     }
 
 }
