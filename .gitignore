@@ -1,2 +1,26 @@
-**/target/**
-**/docs/**
+# Compiled class files
+*.class
+
+# Generated JAR files (keep libs/ JARs as exercise dependencies)
+*.jar
+!**/libs/*.jar
+
+# Build output directories
+**/target/
+
+# Generated documentation
+**/docs/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
