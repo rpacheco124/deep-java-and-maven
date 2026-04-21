@@ -20,6 +20,104 @@ Build the same kind of REST API, but using a tiny annotation-based dispatcher, s
 
 ---
 
+## Full Execution Flow (Startup -> Request -> Response)
+
+### 1) Server Startup (`Main`)
+
+When you run:
+
+```bash
+java -cp target com.dachser.annotatedapi.Main
+```
+
+`Main` does this in order:
+
+1. Creates `RouteRegistry`.
+2. Registers controllers:
+   - `SystemController`
+   - `UserController`
+3. Creates `HttpServer` on port `8076`.
+4. Registers one global context: `"/"` with `DispatchHandler`.
+5. Starts the server thread pool.
+
+### 2) Route Registration (Reflection Phase)
+
+During `registry.registerController(controller)`, reflection is used:
+
+1. `controller.getClass()` gets the runtime class.
+2. `clazz.getDeclaredMethods()` reads all methods.
+3. For each method, `method.getAnnotation(Route.class)` checks if `@Route` exists.
+4. If present, the framework extracts:
+   - `route.method()` (GET/POST/...)
+   - `route.path()` (`/health`, `/users`, ...)
+5. It stores a route entry in an internal map:
+
+```text
+"GET /health" -> (SystemController, health)
+"GET /users"  -> (UserController, listUsers)
+"POST /users" -> (UserController, createUser)
+```
+
+### 3) Request Dispatch (Runtime Phase)
+
+For each incoming HTTP request:
+
+1. `DispatchHandler` reads request method + path from `HttpExchange`.
+2. Builds route key (example: `GET /users`).
+3. Looks up that key in `RouteRegistry`.
+4. If not found -> returns `404 {"error":"Route not found"}`.
+5. If found -> invokes controller method with reflection:
+   - `targetMethod.invoke(controller)` for no-arg methods
+   - `targetMethod.invoke(controller, exchange)` when method needs `HttpExchange`
+6. Takes returned JSON string and sends it via `ResponseUtil`.
+
+---
+
+## Visual Pipeline
+
+```text
+Client (curl/Postman/browser)
+          |
+          v
+   HttpServer (JDK)
+          |
+          v
+   DispatchHandler
+          |
+          |  key = METHOD + PATH
+          v
+     RouteRegistry  <--- built at startup via reflection on @Route
+          |
+          v
+  RouteDefinition (controller instance + java.lang.reflect.Method)
+          |
+          v
+ method.invoke(...)
+          |
+          v
+  Controller method returns JSON String
+          |
+          v
+ ResponseUtil -> HTTP status + JSON body
+          |
+          v
+       Client receives response
+```
+
+### Example: `POST /users`
+
+```text
+POST /users
+  -> DispatchHandler finds "POST /users"
+  -> invokes UserController.createUser(HttpExchange)
+  -> method reads request body, creates user
+  -> sets exchange attribute http.status = 201
+  -> returns JSON: {"id":1,"name":"Ana"}
+  -> DispatchHandler sends HTTP 201 + JSON
+```
+
+---
+
 ## Project Structure
 
 ```text
