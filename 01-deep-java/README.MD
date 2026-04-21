@@ -40,10 +40,22 @@ This course is designed for programmers with prior experience who aim to underst
 - Inspecting Classes and Methods at Runtime.  
 - Practical Example: Loading Plugins Dynamically at Runtime.  
 
-### 5. Custom Annotations  
+### 5. REST API Without Libraries
+- Building a REST API using only JDK classes (`HttpServer`).
+- Defining routes and handlers manually (`/health`, `/users`).
+- Processing request methods, headers, and JSON body manually.
+- Returning JSON responses with proper HTTP status codes.
+
+### 6. Custom Annotations  
 - Creating custom annotations with `@interface`.  
 - Using `@Retention` and `@Target` meta-annotations.  
 - Processing annotations at runtime with reflection.  
 - Practical Example: Building a simple annotation scanner (like a mini-framework).  
+
+### 7. REST API with Annotations (Mini Framework)
+- Defining endpoints with `@Route(path, method)`.
+- Scanning controllers with reflection to register routes dynamically.
+- Dispatching HTTP requests to controller methods using an annotation-based route registry.
+- Comparing manual routing (module 12) vs declarative routing with annotations.
 
 ---
