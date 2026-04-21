@@ -15,9 +15,14 @@ import java.util.concurrent.Executors;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        int port = args.length > 0 ? Integer.parseInt(args[0]) : 8068;
-        RouteRegistry registry = new RouteRegistry();
+        int port = args.length > 0 ? Integer.parseInt(args[0]) : 8076;
 
+        /*
+         * We can also make this part dynamic using reflection
+         * and an annotation like @Controller of target CLASS,
+         * but to avoid making the course too complicated we will do it hardcoded
+         */
+        RouteRegistry registry = new RouteRegistry();
         registry.registerController(new SystemController());
         registry.registerController(new UserController());
 

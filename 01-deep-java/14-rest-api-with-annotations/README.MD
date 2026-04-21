@@ -50,7 +50,7 @@ java -cp target com.dachser.annotatedapi.Main
 
 The server starts on:
 ```text
-http://localhost:8068
+http://localhost:8076
 ```
 
 ---
@@ -59,29 +59,29 @@ http://localhost:8068
 
 Check health:
 ```bash
-curl -i http://localhost:8068/health
+curl -i http://localhost:8076/health
 ```
 
 List users (initially empty):
 ```bash
-curl -i http://localhost:8068/users
+curl -i http://localhost:8076/users
 ```
 
 Create a user:
 ```bash
-curl -i -X POST http://localhost:8068/users \
+curl -i -X POST http://localhost:8076/users \
   -H "Content-Type: application/json" \
   -d '{"name":"Ana"}'
 ```
 
 List users again:
 ```bash
-curl -i http://localhost:8068/users
+curl -i http://localhost:8076/users
 ```
 
 Try an unknown route:
 ```bash
-curl -i http://localhost:8068/unknown
+curl -i http://localhost:8076/unknown
 ```
 
 ---

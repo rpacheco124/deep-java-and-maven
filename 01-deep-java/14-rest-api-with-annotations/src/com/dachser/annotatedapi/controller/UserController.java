@@ -51,6 +51,12 @@ public class UserController {
         return user.toJson();
     }
 
+    // @Route(path = "/users", method = "DELETE")
+    // public String deleteUser(HttpExchange exchange) {
+    // exchange.setAttribute("http.status", 501);
+    // return "{\"error\":\"Not implemented\"}";
+    // }
+
     private static class User {
         private final int id;
         private final String name;
