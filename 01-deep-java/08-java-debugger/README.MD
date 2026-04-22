@@ -16,6 +16,11 @@ To run debugger:
 ```
 jdb Calculator
 ```
+To run debugger and pass input arguments (example `7` and `12`):
+```
+jdb Calculator
+run 7 12
+```
 To set breakpoint:
 ```
 stop in Calculator.sum
@@ -35,4 +40,8 @@ where
 With the print command you can print the value of an variable:
 ```
 print a
+```
+With the cont command you continue execution until the next breakpoint (or program end):
+```
+cont
 ```

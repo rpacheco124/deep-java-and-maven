@@ -1,4 +1,4 @@
-# Import and use the Java libraries
+# How create an executable jar
 
 In this section we are going to create an executable `.jar` file, where we will indicate which is the main file using a `Manifest.mf` file.
 

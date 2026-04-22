@@ -16,5 +16,5 @@ javac -d target -cp libs/greeting.jar src/com/company/App.java
 ```
 To execute java class:
 ```
-java -cp target;libs/greeting.jar com.company.App
+java -cp "target:libs/greeting.jar" com.company.App
 ```

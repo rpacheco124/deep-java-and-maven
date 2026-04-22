@@ -10,12 +10,12 @@ If you've ever used `@Override`, `@Deprecated`, `@Test`, `@Autowired`, or `@Enti
 
 Java provides several annotations out of the box:
 
-| Annotation | Purpose |
-|------------|---------|
-| `@Override` | Tells the compiler this method overrides a superclass method. Compile error if it doesn't. |
-| `@Deprecated` | Marks an element as deprecated. The compiler generates a warning when it's used. |
-| `@SuppressWarnings` | Tells the compiler to suppress specific warnings. |
-| `@FunctionalInterface` | Ensures an interface has exactly one abstract method (for lambdas). |
+| Annotation             | Purpose                                                                                    |
+| ---------------------- | ------------------------------------------------------------------------------------------ |
+| `@Override`            | Tells the compiler this method overrides a superclass method. Compile error if it doesn't. |
+| `@Deprecated`          | Marks an element as deprecated. The compiler generates a warning when it's used.           |
+| `@SuppressWarnings`    | Tells the compiler to suppress specific warnings.                                          |
+| `@FunctionalInterface` | Ensures an interface has exactly one abstract method (for lambdas).                        |
 
 ---
 
@@ -33,20 +33,20 @@ public @interface MyAnnotation {
 
 Meta-annotations are annotations that you put on your annotation definition to control its behavior:
 
-| Meta-Annotation | Purpose | Common Values |
-|-----------------|---------|---------------|
-| `@Retention` | When is the annotation available? | `SOURCE`, `CLASS`, `RUNTIME` |
-| `@Target` | Where can it be applied? | `TYPE`, `METHOD`, `FIELD`, `PARAMETER`, etc. |
-| `@Documented` | Include in Javadoc? | (no values) |
-| `@Inherited` | Do subclasses inherit it? | (no values) |
+| Meta-Annotation | Purpose                           | Common Values                                |
+| --------------- | --------------------------------- | -------------------------------------------- |
+| `@Retention`    | When is the annotation available? | `SOURCE`, `CLASS`, `RUNTIME`                 |
+| `@Target`       | Where can it be applied?          | `TYPE`, `METHOD`, `FIELD`, `PARAMETER`, etc. |
+| `@Documented`   | Include in Javadoc?               | (no values)                                  |
+| `@Inherited`    | Do subclasses inherit it?         | (no values)                                  |
 
 ### `@Retention` - The Most Important Meta-Annotation
 
-| Retention Policy | Available at compile time? | Available in .class? | Available at runtime? | Use Case |
-|-----------------|:-:|:-:|:-:|----------|
-| `SOURCE` | Yes | No | No | Compiler checks only (`@Override`, `@SuppressWarnings`) |
-| `CLASS` | Yes | Yes | No | Default. Bytecode analysis tools. |
-| `RUNTIME` | Yes | Yes | Yes | **Reflection**. This is what frameworks use (`@Autowired`, `@Entity`, `@Test`) |
+| Retention Policy | Available at compile time? | Available in .class? | Available at runtime? | Use Case                                                                       |
+| ---------------- | :------------------------: | :------------------: | :-------------------: | ------------------------------------------------------------------------------ |
+| `SOURCE`         |            Yes             |          No          |          No           | Compiler checks only (`@Override`, `@SuppressWarnings`)                        |
+| `CLASS`          |            Yes             |         Yes          |          No           | Default. Bytecode analysis tools.                                              |
+| `RUNTIME`        |            Yes             |         Yes          |          Yes          | **Reflection**. This is what frameworks use (`@Autowired`, `@Entity`, `@Test`) |
 
 ---
 
@@ -171,16 +171,16 @@ This is the same idea used by audit and tracing frameworks.
 
 ## The Connection: Annotations + Reflection = Frameworks
 
-| Framework | Annotation | What Reflection Does |
-|-----------|-----------|---------------------|
-| **Spring** | `@Autowired` | Scans fields, finds matching beans, injects them via `field.set()` |
-| **Spring MVC** | `@GetMapping("/path")` | Scans methods, reads path value, registers as HTTP handler |
-| **JPA/Hibernate** | `@Entity`, `@Column` | Scans class fields, maps them to database table columns |
-| **JUnit** | `@Test` | Scans methods, invokes each one as a test case |
-| **Jackson** | `@JsonProperty` | Reads field annotations to know how to serialize/deserialize JSON |
-| **Lombok** | `@Getter`, `@Setter` | Uses internal compiler APIs at **compile time** (`SOURCE` retention) to modify the AST directly |
+| Framework         | Annotation             | What Reflection Does                                                                            |
+| ----------------- | ---------------------- | ----------------------------------------------------------------------------------------------- |
+| **Spring**        | `@Autowired`           | Scans fields, finds matching beans, injects them via `field.set()`                              |
+| **Spring MVC**    | `@GetMapping("/path")` | Scans methods, reads path value, registers as HTTP handler                                      |
+| **JPA/Hibernate** | `@Entity`, `@Column`   | Scans class fields, maps them to database table columns                                         |
+| **JUnit**         | `@Test`                | Scans methods, invokes each one as a test case                                                  |
+| **Jackson**       | `@JsonProperty`        | Reads field annotations to know how to serialize/deserialize JSON                               |
+| **Lombok**        | `@Getter`, `@Setter`   | Uses internal compiler APIs at **compile time** (`SOURCE` retention) to modify the AST directly |
 
-**This is why we teach annotations before reflection** - when you understand both, you understand how every major Java framework operates internally.
+when you understand both, you understand how every major Java framework operates internally.
 
 ---
 
