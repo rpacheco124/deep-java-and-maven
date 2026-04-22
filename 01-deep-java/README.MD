@@ -26,7 +26,7 @@ This course is designed for programmers with prior experience who aim to underst
 ### 2. Project and Package Structuring  
 - Introduction to Packages in Java (`package` and `import`).  
 - Naming Conventions for Packages.  
-- Manually creating a project structure:  `src/com/dachser`
+- Manually creating a project structure:  `src/com/company`
 - Compilation while maintaining package structure (`javac -d`).  
 
 ### 3. Creation and Use of Libraries  

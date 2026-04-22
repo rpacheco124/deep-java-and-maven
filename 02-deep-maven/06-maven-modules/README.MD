@@ -84,7 +84,7 @@ Create a directory for the parent project and define its `pom.xml` with `<packag
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.dachser</groupId>
+    <groupId>com.company</groupId>
     <artifactId>multi-module-app</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
@@ -129,7 +129,7 @@ Each module has its own `pom.xml` that references the parent:
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.dachser</groupId>
+        <groupId>com.company</groupId>
         <artifactId>multi-module-app</artifactId>
         <version>1.0.0</version>
     </parent>
@@ -156,7 +156,7 @@ Each module has its own `pom.xml` that references the parent:
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.dachser</groupId>
+        <groupId>com.company</groupId>
         <artifactId>multi-module-app</artifactId>
         <version>1.0.0</version>
     </parent>
@@ -166,7 +166,7 @@ Each module has its own `pom.xml` that references the parent:
     <dependencies>
         <!-- Dependency on sibling module -->
         <dependency>
-            <groupId>com.dachser</groupId>
+            <groupId>com.company</groupId>
             <artifactId>core</artifactId>
             <version>${project.version}</version>
         </dependency>

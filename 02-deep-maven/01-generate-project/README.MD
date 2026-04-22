@@ -18,7 +18,7 @@ We can send the project information using parameters as in the following command
 
 ```
 mvn archetype:generate \
-  -DgroupId=com.dachser \
+  -DgroupId=com.company \
   -DartifactId=simple-maven \
   -Dversion=1.0 \
   -DarchetypeArtifactId=maven-archetype-simple \
@@ -53,7 +53,7 @@ The archetypes generate projects with **outdated default versions**. After gener
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.dachser</groupId>
+  <groupId>com.company</groupId>
   <artifactId>simple-maven</artifactId>
   <version>1.0</version>
 
@@ -113,7 +113,7 @@ The archetypes generate projects with **outdated default versions**. After gener
 The generated test class uses JUnit 3 style (`extends TestCase`). Update it to JUnit 5:
 
 ```java
-package com.dachser;
+package com.company;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;

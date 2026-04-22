@@ -12,9 +12,9 @@ In this section we are going to generate a library so that it can be used in oth
 
 To generate java class:
 ```
-javac -d target -cp libs/greeting.jar src/com/dachser/App.java
+javac -d target -cp libs/greeting.jar src/com/company/App.java
 ```
 To execute java class:
 ```
-java -cp target;libs/greeting.jar com.dachser.App
+java -cp target;libs/greeting.jar com.company.App
 ```

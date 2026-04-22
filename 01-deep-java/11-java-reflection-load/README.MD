@@ -39,11 +39,11 @@ In this example, `ReflectionLoader.java` has **no import** for `GreetingSout`. T
 
 To generate java class:
 ```
-javac -d target -cp libs/greeting.jar src/com/dachser/ReflectionLoader.java
+javac -d target -cp libs/greeting.jar src/com/company/ReflectionLoader.java
 ```
 To execute java class:
 ```
-java -cp target;libs/greeting.jar com.dachser.ReflectionLoader
+java -cp target;libs/greeting.jar com.company.ReflectionLoader
 ```
 
 ***NOTE: Notice that the compilation requires `greeting.jar` on the classpath (`-cp libs/greeting.jar`). This is because `Class.forName()` looks for the class on the classpath at runtime. If you remove the JAR from the classpath, you'll get a `ClassNotFoundException` — the most common error when working with dynamic class loading.***

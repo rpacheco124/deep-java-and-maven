@@ -103,7 +103,7 @@ public class RouteScanner {
 
 ```bash
 javac -d target $(find src -name "*.java")
-java -cp target com.dachser.routes.RouteScanner
+java -cp target com.company.routes.RouteScanner
 ```
 
 This is exactly the pattern that Spring uses with `@RequestMapping` and `@GetMapping`.
@@ -161,7 +161,7 @@ public class LogResultScanner {
 
 ```bash
 javac -d target $(find src -name "*.java")
-java -cp target com.dachser.logs.LogResultScanner
+java -cp target com.company.logs.LogResultScanner
 ```
 
 This is the same idea used by audit and tracing frameworks.
@@ -193,8 +193,8 @@ javac -d target $(find src -name "*.java")
 
 Run each example:
 ```bash
-java -cp target com.dachser.routes.RouteScanner
-java -cp target com.dachser.logs.LogResultScanner
+java -cp target com.company.routes.RouteScanner
+java -cp target com.company.logs.LogResultScanner
 ```
 
 ***NOTE: `@Retention(RetentionPolicy.RUNTIME)` is the critical piece in this module — without it, annotations are discarded after compilation and reflection cannot see them. This is the most common mistake when creating custom annotations for runtime frameworks.***

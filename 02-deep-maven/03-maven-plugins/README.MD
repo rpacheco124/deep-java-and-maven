@@ -41,6 +41,108 @@ In this example we have added a specific version of the plugin (``<version>3.8.1
 
 It is recommended to make an extension of the plugin since if we do not do it, Maven will take the default versions of the plugin and the default versions of source and target which are Java 1.5 or 1.6
 
+### How External Plugins Hook into the Lifecycle
+
+External plugins are integrated into the build by binding their goals to a **lifecycle phase**.
+
+- Lifecycle runs phases in order (for example: `validate -> initialize -> compile -> test -> verify -> package -> install -> deploy`)
+- Each phase executes all goals bound to that phase
+- You can bind third-party plugin goals with `<executions>` + `<phase>`
+
+### `executions`, `execution`, and `goals` (Quick Explanation)
+
+When configuring a plugin, these elements control **when** and **what** Maven runs:
+
+- `<executions>`: container for one or more execution blocks
+- `<execution>`: one runnable block (you can give it an `<id>`)
+- `<phase>`: lifecycle phase where this execution should run
+- `<goals>` / `<goal>`: concrete plugin tasks to execute
+
+Basic shape:
+
+```xml
+<plugin>
+  <groupId>...</groupId>
+  <artifactId>...</artifactId>
+  <executions>
+    <execution>
+      <id>my-execution</id>
+      <phase>package</phase>
+      <goals>
+        <goal>some-goal</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
+```
+
+Important:
+
+- `goal` names and valid configuration parameters are **plugin-specific**.
+- There is no universal list of goals/parameters for all plugins.
+- Always check each plugin documentation (or `mvn help:describe`) to know supported goals and options.
+
+Complete JaCoCo example (multiple goals in different phases):
+
+```xml
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.jacoco</groupId>
+      <artifactId>jacoco-maven-plugin</artifactId>
+      <version>0.8.10</version>
+      <executions>
+        <execution>
+          <id>attach-agent</id>
+          <phase>initialize</phase>
+          <goals>
+            <goal>prepare-agent</goal>
+          </goals>
+        </execution>
+
+        <execution>
+          <id>coverage-report</id>
+          <phase>verify</phase>
+          <goals>
+            <goal>report</goal>
+          </goals>
+        </execution>
+
+        <execution>
+          <id>coverage-check</id>
+          <phase>verify</phase>
+          <goals>
+            <goal>check</goal>
+          </goals>
+          <configuration>
+            <rules>
+              <rule>
+                <element>BUNDLE</element>
+                <limits>
+                  <limit>
+                    <counter>LINE</counter>
+                    <value>COVEREDRATIO</value>
+                    <minimum>0.80</minimum>
+                  </limit>
+                </limits>
+              </rule>
+            </rules>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
+```
+
+What happens with `mvn verify`:
+
+1. `initialize` phase runs `jacoco:prepare-agent`
+2. tests run in `test` phase and produce coverage data
+3. `verify` phase runs `jacoco:report` and `jacoco:check`
+
+JaCoCo has many other goals (`prepare-agent-integration`, `report-integration`, `merge`, `dump`, etc.), but goal names and valid configuration depend on the plugin.
+
 ### Examples Third-Party Plugins
 
 1) **Spring Boot Maven Plugin**

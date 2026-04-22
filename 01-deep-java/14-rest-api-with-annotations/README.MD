@@ -27,7 +27,7 @@ Build the same kind of REST API, but using a tiny annotation-based dispatcher, s
 When you run:
 
 ```bash
-java -cp target com.dachser.annotatedapi.Main
+java -cp target com.company.annotatedapi.Main
 ```
 
 `Main` does this in order:
@@ -121,15 +121,15 @@ POST /users
 ## Project Structure
 
 ```text
-src/com/dachser/annotatedapi/Main.java
-src/com/dachser/annotatedapi/annotations/Route.java
-src/com/dachser/annotatedapi/framework/RouteDefinition.java
-src/com/dachser/annotatedapi/framework/RouteRegistry.java
-src/com/dachser/annotatedapi/framework/DispatchHandler.java
-src/com/dachser/annotatedapi/controller/SystemController.java
-src/com/dachser/annotatedapi/controller/UserController.java
-src/com/dachser/annotatedapi/util/JsonUtil.java
-src/com/dachser/annotatedapi/util/ResponseUtil.java
+src/com/company/annotatedapi/Main.java
+src/com/company/annotatedapi/annotations/Route.java
+src/com/company/annotatedapi/framework/RouteDefinition.java
+src/com/company/annotatedapi/framework/RouteRegistry.java
+src/com/company/annotatedapi/framework/DispatchHandler.java
+src/com/company/annotatedapi/controller/SystemController.java
+src/com/company/annotatedapi/controller/UserController.java
+src/com/company/annotatedapi/util/JsonUtil.java
+src/com/company/annotatedapi/util/ResponseUtil.java
 ```
 
 ---
@@ -143,7 +143,7 @@ javac -d target $(find src -name "*.java")
 
 To execute the REST API server:
 ```bash
-java -cp target com.dachser.annotatedapi.Main
+java -cp target com.company.annotatedapi.Main
 ```
 
 The server starts on:

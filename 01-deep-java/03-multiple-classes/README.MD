@@ -16,5 +16,5 @@ javac -d target $(find src -name "*.java")
 ```
 To execute java class:
 ```
-java -cp target com.dachser.MultipleClassesApp
+java -cp target com.company.MultipleClassesApp
 ```

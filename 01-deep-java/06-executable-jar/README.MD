@@ -18,7 +18,7 @@ javac -d target $(find src -name "*.java")
 ```
 To generate jar file:
 ```
-jar cfm target/CalculatorApp.jar META-INF/Manifest.mf -C target com/dachser/CalculatorApp.class
+jar cfm target/CalculatorApp.jar META-INF/Manifest.mf -C target com/company/CalculatorApp.class
 ```
 To execute the jar file:
 ```

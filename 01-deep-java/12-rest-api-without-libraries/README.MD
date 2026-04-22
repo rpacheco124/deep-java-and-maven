@@ -37,10 +37,10 @@ Frameworks hide many HTTP details. By doing it manually, you understand the core
 ## Project Structure
 
 ```text
-src/com/dachser/api/Main.java
-src/com/dachser/api/UserHandler.java
-src/com/dachser/api/ResponseUtil.java
-src/com/dachser/api/JsonUtil.java
+src/com/company/api/Main.java
+src/com/company/api/UserHandler.java
+src/com/company/api/ResponseUtil.java
+src/com/company/api/JsonUtil.java
 ```
 
 ---
@@ -54,7 +54,7 @@ javac -d target $(find src -name "*.java")
 
 To execute the REST API server:
 ```bash
-java -cp target com.dachser.api.Main
+java -cp target com.company.api.Main
 ```
 
 The server starts on:

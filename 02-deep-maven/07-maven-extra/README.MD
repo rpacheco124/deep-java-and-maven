@@ -87,7 +87,7 @@ mvn dependency:tree
 
 Example output:
 ```
-[INFO] com.dachser:my-app:jar:1.0.0
+[INFO] com.company:my-app:jar:1.0.0
 [INFO] +- org.springframework.boot:spring-boot-starter-web:jar:3.2.0:compile
 [INFO] |  +- org.springframework.boot:spring-boot-starter:jar:3.2.0:compile
 [INFO] |  |  +- org.springframework.boot:spring-boot:jar:3.2.0:compile

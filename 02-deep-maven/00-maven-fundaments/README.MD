@@ -29,6 +29,34 @@ Maven defines a set of build phases that need to be executed in a specific order
 - **install**: Install the packaged code into the local repository.
 - **deploy**: Deploy the package to a remote repository.
 
+#### Full Default Lifecycle (in order)
+
+- **validate**: Validate project structure and required information in the POM.
+- **initialize**: Initialize build state (set properties, create folders, prepare environment).
+- **generate-sources**: Generate additional source code before compilation.
+- **process-sources**: Process generated and main sources before compile.
+- **generate-resources**: Generate resource files needed by the application.
+- **process-resources**: Copy/filter resources into the build output directory.
+- **compile**: Compile main source code (`src/main/java`).
+- **process-classes**: Post-process compiled classes (for example bytecode enhancement).
+- **generate-test-sources**: Generate test source code.
+- **process-test-sources**: Process test source files before compilation.
+- **generate-test-resources**: Generate resources required by tests.
+- **process-test-resources**: Copy/filter test resources into test output.
+- **test-compile**: Compile test source code (`src/test/java`).
+- **process-test-classes**: Post-process compiled test classes.
+- **test**: Run unit tests (usually with Surefire).
+- **prepare-package**: Perform final checks/steps before packaging.
+- **package**: Create distributable artifact (`.jar`, `.war`, etc.).
+- **pre-integration-test**: Prepare environment for integration tests.
+- **integration-test**: Run integration tests (often with Failsafe).
+- **post-integration-test**: Clean up integration test environment.
+- **verify**: Verify quality gates and validation checks (coverage, rules, etc.).
+- **install**: Install artifact into local repository (`~/.m2/repository`).
+- **deploy**: Publish artifact to a remote repository.
+
+`initialize` and `verify` are official phases of Maven's default lifecycle. Many external plugins bind goals to these phases.
+
 
 ### Maven Commands
 The following are some useful maven commands:
@@ -36,6 +64,7 @@ The following are some useful maven commands:
 | Command         | Description                                                                 | Lifecycle Stage    |
 |-----------------|-----------------------------------------------------------------------------|--------------------|
 | `mvn clean`     | Cleans the `target` directory by deleting previously compiled files.       | ---              |
+| `mvn dependency:resolve` | Resolves and downloads dependencies declared in `pom.xml` into the local repository. | Goal (`dependency` plugin) |
 | `mvn validate`  | Validates the project structure and configuration.                         | **validate**           |
 | `mvn compile`   | Compiles the source code of the project.                                   | **compile**            |
 | `mvn test`      | Runs unit tests using the compiled code.                                   | **test**               |
@@ -46,6 +75,7 @@ The following are some useful maven commands:
 #### Notes:
 1) Maven commands like mvn install execute all preceding lifecycle stages in the Build Lifecycle.
 2) Custom goals like mvn clean are not part of the default lifecycle but are often used alongside it.
+3) You usually do **not** need to run `mvn dependency:resolve` manually: Maven resolves/downloads dependencies automatically when you execute lifecycle phases like `mvn compile`, `mvn test`, `mvn package`, or `mvn install`.
 
 ### Maven Repositories
 

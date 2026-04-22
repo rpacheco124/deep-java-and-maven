@@ -20,5 +20,5 @@ javac -d target $(find src -name "*.java")
 ```
 To generate jar file:
 ```
-jar cf greeting.jar -C target com/dachser/greeting
+jar cf greeting.jar -C target com/company/greeting
 ```
