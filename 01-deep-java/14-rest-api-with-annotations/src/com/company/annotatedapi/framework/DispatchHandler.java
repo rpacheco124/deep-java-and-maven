@@ -28,6 +28,8 @@ public class DispatchHandler implements HttpHandler {
                 return;
             }
 
+            checkAuth(exchange);
+
             Method targetMethod = route.getMethod();
             Object controller = route.getController();
             exchange.setAttribute("http.status", 200);
@@ -57,6 +59,11 @@ public class DispatchHandler implements HttpHandler {
         } catch (Exception ex) {
             ResponseUtil.sendJson(exchange, 500, "{\"error\":\"" + escape(ex.getMessage()) + "\"}");
         }
+    }
+
+    private void checkAuth(HttpExchange exchange) {
+        String authorized = exchange.getRequestHeaders().getFirst("Authorized");
+        // Add authentication logic here
     }
 
     private String escape(String value) {
